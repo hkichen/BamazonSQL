@@ -19,7 +19,6 @@ values ("earbuds", "electronics", 14.98, 20);
 insert into products (product_name, department_name, price, stock_quantity)
 values ("mug", "kitchen", 10.50, 20);
 
-
 insert into products (product_name, department_name, price, stock_quantity)
 values ("Hooded Sweatshirt", "Clothes", 21.34, 20);
 

@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected to Database!")
-    //run function that welcome you to store and lists all products
+    openStore();
 })
 
 function openStore(){
@@ -27,12 +27,12 @@ function openStore(){
         if (err) throw err;
         for (var i = 0; i < resp.length; i++) {
             console.log(
-                "ID: " + resp[i].id 
-                + " || Item Name: " + resp[i].product_name
-                + " || Price: " + resp[i].price
+                "ID: " + resp[i].item_id 
+                + " || Item Name: " + resp[i].product_name + "  "
+                + " || Price: " + resp[i].price + " "
             )
         }
-        runPrompt();
+        //runPrompt();
     })
 }
 
