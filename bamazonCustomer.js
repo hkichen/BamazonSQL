@@ -25,7 +25,7 @@ function openStore(){
         + "\n\nThis is what we currently have in stock: "
     );
     
-    connection.query("select * from products", function (err, resp) {
+    connection.query("SELECT * FROM products", function (err, resp) {
         if (err) throw err;
         
         //make a display table
@@ -65,7 +65,7 @@ function runPrompt() {
 //this function updates the server according to what user purchasses
 //1. check for stock match, then proceed with updating server
 function transaction(ID, stockNeeded) {
-    connection.query("select * from products where item_id = " + ID, function(err, resp) {
+    connection.query("SELECT * FROM products WHERE item_id = " + ID, function(err, resp) {
         if (err) throw err;
 
         if (stockNeeded <= resp[0].stock_quantity) {
@@ -77,7 +77,7 @@ function transaction(ID, stockNeeded) {
             + totalPrice 
             + "\nThanks for stopping buy! ^_~*");
 
-            connection.query("update products SET stock_quantity = stock_quantity -" + stockNeeded + "where item_id =" + ID);
+            connection.query("UPDATE products SET stock_quantity = stock_quantity -" + stockNeeded + "WHERE item_id = " + ID);
         }else {
             console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
         }

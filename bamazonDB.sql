@@ -26,7 +26,7 @@ insert into products (product_name, department_name, price, stock_quantity)
 values ("Hooded Sweatshirt", "Clothes", 21.34, 20);
 
 insert into products (product_name, department_name, price, stock_quantity)
-values ("Azalea Shrub - 3g", "Garden", 24.30, 15);
+values ("Azalea Shrub - 3 gallon", "Garden", 24.30, 15);
 
 insert into products (product_name, department_name, price, stock_quantity)
 values ("Organic Honey - 16oz", "Food", 44.50, 10);
