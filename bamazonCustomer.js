@@ -33,42 +33,39 @@ function openStore(){
             head: ["Item ID", "Product Name", "Department", "Price", "Stock"],
             colWidths: [10, 45, 20, 10, 10]
         });
-
+        
         for (var i = 0; i < resp.length; i++) {
-
+            
             showTable.push([
                 resp[i].item_id, resp[i].product_name, resp[i].department_name, resp[i].price, resp[i].stock_quantity
             ])
         }
         console.log(showTable.toString());
-        //runPrompt();
+        runPrompt();
     })
 }
 
-// function runPrompt() {
-//     connection.query("select * from products", function (err, resp) {
-//         if (err) throw err;
-
-//         inquirer.prompt({
-//             name: "buy",
-//             message: "What Would you like to buy? (Please indicate by ID)",
-//         }).then(function(answer) {
-//             if(answer.buy === resp.item_id) {
-//                 inquirer.prompt([
-//                     {
-//                         name: "howMany",
-//                         message: "How many would you like to purchase?",
-//                         validate: function(value) {
-//                             if (isNaN(value) === false) {
-//                                 return true;
-//                             }
-//                             return false;
-//                         }
-//                     }
-//                 ]).then(function(answer) {
-//                     if (answer.howMany === )
-//                 })
-//             }
-//         }
-//     });
-// }
+function runPrompt() {
+    inquirer.prompt([
+        {
+            name: "buy",
+            message: "What Would you like to buy? (Please indicate by ID)",   
+        }, {
+            name: "howMany",
+            message: "How many would you like to purchase?"
+        }        
+    ]).then(function(answer) {
+        var buyID = answer.buy;
+        var buyAmount = answer.howMany;
+        //run transaction function here//
+        transaction(buyID, buyAmount);
+    });
+};
+       
+//this function updates the server according to what user purchasses
+//1. check for quanitity match, then proceed with updating server
+function transaction(buy, howMany) {
+    connection.query("select * from products where item_id = " + buy, function(err, resp) {
+        
+    })
+}    

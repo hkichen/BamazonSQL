@@ -35,4 +35,4 @@ insert into products (product_name, department_name, price, stock_quantity)
 values ("Lace Curtains", "Home", 14.98, 20);
 
 insert into products (product_name, department_name, price, stock_quantity)
-values ("Slinky", "Toys", 14.98, 20);
+values ("Slinky", "Toys", 6.34, 20);
