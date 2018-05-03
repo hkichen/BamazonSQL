@@ -63,9 +63,26 @@ function runPrompt() {
 };
        
 //this function updates the server according to what user purchasses
-//1. check for quanitity match, then proceed with updating server
+//1. check for stock match, then proceed with updating server
 function transaction(buy, howMany) {
     connection.query("select * from products where item_id = " + buy, function(err, resp) {
-        
+        if (err) throw err;
+
+        if (howMany <= resp[0].stock_quanitity) {
+            console.log("It looks like this item is in stock. Your order is being processed.");
+            
+            var totalPrice = resp[0].price * howMany;
+            
+            console.log("Your final cost is $" 
+            + totalPrice 
+            + "\nThanks for stopping buy! ^_~*");
+
+            connection.query("update products SET stock_quantity = stock_quantity -" + howMany + "where item_id =" + buy);
+        }else {
+            console.log("Sorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
+        }
+        openStore();
     })
-}    
+
+}
+
