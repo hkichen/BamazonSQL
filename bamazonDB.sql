@@ -13,6 +13,9 @@ create table products (
   PRIMARY KEY (item_id)
 );
 
+alter table products drop COLUMN price;
+alter table products add COLUMN price DECIMAL(10, 2) not null;
+
 insert into products (product_name, department_name, price, stock_quantity)
 values ("Noise Canceling Earbuds", "Electronics", 14.98, 20);
 
