@@ -21,7 +21,7 @@ function openStore(){
     console.log(
         "\n--------------------"
         + "Welcome to Bamazon, where some things can be found~!"
-        + "\n--------------------"
+        + "--------------------"
         + "\n\nThis is what we currently have in stock: "
     );
     
@@ -29,8 +29,8 @@ function openStore(){
         if (err) throw err;
         
         //make a display table
-        var showTable = new table({
-            head: ["Item ID", "Product Name", "Department", "Price", "Stock Quantity"],
+        var showTable = new Table({
+            head: ["Item ID", "Product Name", "Department", "Price", "Stock"],
             colWidths: [10, 45, 20, 10, 10]
         });
 
@@ -41,7 +41,7 @@ function openStore(){
             ])
         }
         console.log(showTable.toString());
-        runPrompt();
+        //runPrompt();
     })
 }
 
