@@ -13,10 +13,10 @@ Download the respository and install the necessary packages.
 For the customer:
 Run the js file using node < node bamazonCustomer.js > and follow through with the prompts. 
 This is the Welcome Page:
-[!alt text](https://github.com/hkichen/BamazonSQL/blob/master/images/connect_welcome.PNG)
+![alt text](https://github.com/hkichen/BamazonSQL/blob/master/images/connect_welcome.PNG)
 
 After you make your selections:
-[!alttext](https://github.com/hkichen/BamazonSQL/blob/master/images/purchase.PNG)
+![alttext](https://github.com/hkichen/BamazonSQL/blob/master/images/purchase.PNG)
 
 
 # Trouble Shooting
