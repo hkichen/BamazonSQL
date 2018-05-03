@@ -79,7 +79,7 @@ function transaction(buy, howMany) {
 
             connection.query("update products SET stock_quantity = stock_quantity -" + howMany + "where item_id =" + buy);
         }else {
-            console.log("Sorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
+            console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
         }
         openStore();
     })
