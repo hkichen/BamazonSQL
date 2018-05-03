@@ -48,36 +48,36 @@ function openStore(){
 function runPrompt() {
     inquirer.prompt([
         {
-            name: "buy",
+            name: "ID",
             message: "What Would you like to buy? (Please indicate by ID)",   
         }, {
-            name: "howMany",
+            name: "Stock",
             message: "How many would you like to purchase?"
         }        
     ]).then(function(answer) {
-        var buyID = answer.buy;
-        var buyAmount = answer.howMany;
+        var itemID = answer.ID;
+        var wantAmount = answer.Stock;
         //run transaction function here//
-        transaction(buyID, buyAmount);
+        transaction(itemID, wantAmount);
     });
 };
        
 //this function updates the server according to what user purchasses
 //1. check for stock match, then proceed with updating server
-function transaction(buy, howMany) {
-    connection.query("select * from products where item_id = " + buy, function(err, resp) {
+function transaction(ID, stockNeeded) {
+    connection.query("select * from products where item_id = " + ID, function(err, resp) {
         if (err) throw err;
 
-        if (howMany <= resp[0].stock_quanitity) {
+        if (stockNeeded <= resp[0].stock_quantity) {
             console.log("It looks like this item is in stock. Your order is being processed.");
             
-            var totalPrice = resp[0].price * howMany;
+            var totalPrice = resp[0].price * stockNeeded;
             
             console.log("Your final cost is $" 
             + totalPrice 
             + "\nThanks for stopping buy! ^_~*");
 
-            connection.query("update products SET stock_quantity = stock_quantity -" + howMany + "where item_id =" + buy);
+            connection.query("update products SET stock_quantity = stock_quantity -" + stockNeeded + "where item_id =" + ID);
         }else {
             console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
         }
