@@ -42,7 +42,7 @@ function managerOptions() {
         }
 
         if (answer === "Add to Inventory") {
-            addItem();
+            addToStock();
             newAction();
         }
 
@@ -54,7 +54,7 @@ function managerOptions() {
 }
 
 function viewProducts() {
-    connection.query("SELECT * FROM products", function(err, resp){
+    connection.query("SELECT * FROM products", function(err, respp){
         if (err) throw err;
         console.log(
             "\n--------------------\n" +
@@ -109,5 +109,58 @@ function lowStock() {
             ])
         }
         console.log(lowStockTable.toString());
+    })
+}
+
+function addToStock(){
+    inquirer.prompt([
+        {
+            name: "item",
+            message: "Enter the ID of the item you wish to add stock to."
+        },
+
+        {
+            name: "amount",
+            message: "How many?"
+        }
+    ]).then(function(answer){
+        connection.query('SELECT * FROM products WHERE id = ?', [answer.item], function(err, resp){
+            connection.query('UPDATE products SET ? Where ?', [{
+                stock_quantity: resp[0].stock_quantity + parseInt(answer.amount)
+            },{
+                id: answer.item
+            }], function(err, resp){});
+        })
+    console.log('Inventory updated');
+    })
+}
+
+function newItem() {
+    inquirer.prompt([{
+        name: "product",
+        message: 'Enter product name: '
+    },
+    
+    {
+        name: "department",
+        message: 'Enter department name: '
+    },
+    
+    {
+        name: "price",
+        message: "price (00.00 format): ",
+    },
+    
+    {
+        name: "stock",
+        message: "Stock amount: ",
+    }]).then(function(answer){
+        connection.query('INSERT into products SET ?', {
+            product_name: answer.product,
+            department_name: answer.department,
+            price: answer.price,
+            stock_quantity: answer.stock
+        }, function(err, resp){});
+        console.log("New Item Added :-)");
     })
 }
