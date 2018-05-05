@@ -57,6 +57,7 @@ function runPrompt() {
     ]).then(function(answer) {
         var itemID = answer.ID;
         var wantAmount = answer.Stock;
+        console.log(answer)
         //run transaction function here//
         transaction(itemID, wantAmount);
     });
@@ -77,7 +78,10 @@ function transaction(ID, stockNeeded) {
             + totalPrice 
             + "\nThanks for stopping by! ^_~*");
 
-            connection.query("UPDATE products SET stock_quantity = " (resp[0].stock_quantity - stockNeeded) + "WHERE item_id = " + ID, function(err, resp) {
+            connection.query("UPDATE products SET ? WHERE ? ",[
+                {stock_quantity : resp[0].stock_quantity - stockNeeded},
+                {item_id: ID}
+            ], function(err, resp) {
                 if (err) throw err;
             });
 
