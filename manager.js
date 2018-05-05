@@ -18,7 +18,7 @@ connection.connect(function(err) {
 
 //function for actions
 function managerOptions() {
-    console.log("Welcome to the Manage Portal.\n")
+    console.log("Welcome to the Manager Portal.\n")
 
     inquirer.prompt([
         {
