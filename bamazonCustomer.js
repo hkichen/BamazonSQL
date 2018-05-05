@@ -77,7 +77,7 @@ function transaction(ID, stockNeeded) {
             + totalPrice 
             + "\nThanks for stopping buy! ^_~*");
 
-            connection.query("UPDATE products SET stock_quantity = " (stock_quantity - stockNeeded) + "WHERE item_id = " + ID, function(err, resp) {
+            connection.query("UPDATE products SET stock_quantity = " (resp[0].stock_quantity - stockNeeded) + "WHERE item_id = " + ID, function(err, resp) {
                 if (err) throw err;
             });
 
