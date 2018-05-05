@@ -21,3 +21,5 @@ After you make your selections:
 
 # Trouble Shooting
 There is currently an error in reloading the store once a purchase has been made due to incorrect SQL syntax somewhere...
+
+Currently, I only have the customer view working (mostly). Manager and Executive views will be added on later.
