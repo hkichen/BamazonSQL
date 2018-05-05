@@ -85,11 +85,12 @@ function transaction(ID, stockNeeded) {
                 if (err) throw err;
             });
 
+            console.log("\n-------Starting New Store Session-------\n\n");
             openStore();
         }else {
-            console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
+            console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)" + "\n-------Starting New Store Session-------\n\n")
+            openStore();
         }
-        openStore();
     })
 
 }
