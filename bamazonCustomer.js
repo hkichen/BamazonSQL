@@ -77,7 +77,11 @@ function transaction(ID, stockNeeded) {
             + totalPrice 
             + "\nThanks for stopping buy! ^_~*");
 
-            connection.query("UPDATE products SET stock_quantity = stock_quantity -" + stockNeeded + "WHERE item_id = " + ID);
+            connection.query("UPDATE products SET stock_quantity = " (stock_quantity - stockNeeded) + "WHERE item_id = " + ID, function(err, resp) {
+                if (err) throw err;
+            });
+
+            openStore();
         }else {
             console.log("\nSorry, I do not have enough of what you want. Beep Boop. Schzzztttt.... (X_x)")
         }
