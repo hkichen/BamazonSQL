@@ -9,9 +9,6 @@ var connection = mysql.createConnection({
     database:  "bamazonDB"
 });
 
-var updateInventory = [];
-var addItem = [];
-
 //est. a connection to the database
 connection.connect(function(err) {
     if (err) throw err;
